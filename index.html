@@ -1,191 +1,983 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EV100 - Centennial Vision Board</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#fff;font-family:'Helvetica Neue',Arial,sans-serif}.hero{padding:80px 40px 40px;text-align:center;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#0a0a0a 100%)}.hero h1{font-size:72px;font-weight:800;letter-spacing:-2px;margin-bottom:8px;background:linear-gradient(135deg,#fff 0%,#8ecae6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero .sub{font-size:18px;color:#888;font-weight:300;letter-spacing:4px;text-transform:uppercase}.hero .tagline{font-size:14px;color:#555;margin-top:16px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);padding:12px 20px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;border-bottom:1px solid #222}nav a{color:#888;text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;border:1px solid #333;transition:all .3s}nav a:hover,nav a.active{color:#fff;border-color:#8ecae6;background:rgba(142,202,230,.1)}.section{padding:60px 20px 20px}.section h2{font-size:32px;font-weight:700;margin-bottom:8px;padding-left:20px}.section .desc{font-size:14px;color:#666;padding-left:20px;margin-bottom:30px;max-width:700px}.grid{display:columns;columns:5 240px;gap:12px;padding:0 20px}.grid img{width:100%;display:block;margin-bottom:12px;border-radius:8px;cursor:pointer;transition:transform .3s,box-shadow .3s}.grid img:hover{transform:scale(1.02);box-shadow:0 8px 32px rgba(142,202,230,.2)}.count{display:inline-block;background:#8ecae6;color:#0a0a0a;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:middle}@media(max-width:768px){.grid{columns:2}.hero h1{font-size:42px}}.lightbox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}.lightbox.active{display:flex}.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV100 — Electro-Voice Centennial Vision Board</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #8ecae6;
+            padding: 0.75rem 2rem;
+            overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(142, 202, 230, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            white-space: nowrap;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            display: inline-block;
+            padding: 0.75rem 1.2rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #8ecae6;
+            border-bottom-color: #8ecae6;
+        }
+        
+        nav a.active {
+            color: #8ecae6;
+            border-bottom-color: #8ecae6;
+        }
+        
+        /* Header */
+        header {
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            border-bottom: 2px solid #8ecae6;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #8ecae6;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        
+        .total-count {
+            display: inline-block;
+            background-color: rgba(142, 202, 230, 0.1);
+            color: #8ecae6;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            border: 1px solid #8ecae6;
+        }
+        
+        /* Main content */
+        main {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #8ecae6;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .image-count {
+            display: inline-block;
+            background-color: rgba(142, 202, 230, 0.15);
+            color: #8ecae6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        section > p {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-style: italic;
+        }
+        
+        /* Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            background-color: #1a1a1a;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            border-color: #8ecae6;
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(142, 202, 230, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            opacity: 0.9;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #8ecae6;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 2001;
+        }
+        
+        .lightbox-close:hover {
+            color: #ffffff;
+        }
+        
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(142, 202, 230, 0.2);
+            border: none;
+            color: #8ecae6;
+            font-size: 1.5rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(142, 202, 230, 0.4);
+            color: #ffffff;
+        }
+        
+        .lightbox-prev {
+            left: -80px;
+        }
+        
+        .lightbox-next {
+            right: -80px;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            nav a {
+                padding: 0.6rem 0.9rem;
+                font-size: 0.8rem;
+            }
+            
+            .lightbox-prev,
+            .lightbox-next {
+                padding: 0.75rem 1rem;
+                font-size: 1.2rem;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="hero">
-  <h1>EV100</h1>
-  <div class="sub">Centennial Vision Board</div>
-  <div class="tagline">Inspiration for the Electro-Voice 100th anniversary. Future-facing. People-centered. Genuinely different. Not about the company - about the humans who use sound.</div>
-</div>
-<nav id="nav">
-  <a href="#immersive" class="active">Immersive Sound</a>
-  <a href="#stages">Stage Design</a>
-  <a href="#crowds">Crowds & Celebration</a>
-  <a href="#activations">Brand Activations</a>
-  <a href="#typography">Bold Typography</a>
-  <a href="#performance">Live Performance</a>
-  <a href="#spatial">Spatial Audio</a>
-  <a href="#engineers">Sound Engineers</a>
-  <a href="#festival">Festival Community</a>
-  <a href="#light">Light Experiences</a>
-  <a href="#anniversary">Anniversary Design</a>
-</nav>
-<div class="section" id="immersive">
-  <h2>Immersive Sound Art <span class="count">10</span></h2>
-  <div class="desc">Installations where sound becomes visible, physical, spatial.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/47/c3/3e/47c33e25d4eec31fe42d289f63784978.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/02/12/b5/0212b57447dd7eb648d63970bc511525.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/65/9c/b4/659cb462700d67601b99304adce6a0f5.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/6e/9f/9a/6e9f9aee8ede0796c0dd24b738e316dd.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/5b/e8/b0/5be8b02014994ce7d21c4f9250e1d516.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/10/d4/50/10d450f0b5291c46406a14c5550c96b7.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/72/4d/e6/724de6a100b5d8137569123f1bc1bae9.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/f9/b9/09/f9b90933629f425d51d16d3990036b87.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/e5/48/41/e548419fe15819e3306a2a84f9661201.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/06/63/ac/0663ac00de66966ebffe8d4cd8b20521.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="stages">
-  <h2>Futuristic Stage Design <span class="count">8</span></h2>
-  <div class="desc">The future of live sound. Massive LED arenas, sculptural stages.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/95/6a/e3/956ae36f38fac4c2fda42dae42d24172.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/a5/b4/e3/a5b4e3a5a853cd901d4c08d07e1e315d.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/f6/fd/b6/f6fdb606f5d4b3570a63d81e1fc4e348.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/56/7b/6e/567b6e87457065e24d4cb7dbc0a52e8c.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/f4/09/de/f409dedc332942884710fe3f03aee3e6.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/aa/b8/68/aab8681820e399d2e9092572e734f3c1.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/bb/48/0a/bb480ae557d612df51633efea63b81ea.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/80/6e/95/806e9535618610d5691a844267aea73e.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="crowds">
-  <h2>Crowds & Celebration <span class="count">8</span></h2>
-  <div class="desc">The community IS the celebration. The people who show up.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/1f/31/0e/1f310e918ddd6d3499d2dc4f603c424f.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/ec/fe/08/ecfe08c3017ee785447632ac271c1971.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/17/54/98/175498e1f0d0416f14a27432baa8c61b.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/53/3d/b3/533db3a193581bd0f59330724f4409c5.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/42/e6/fe/42e6fe1da36cefffc4566a0a1480067b.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/71/3d/00/713d00079ea8ed2f87760395e2593acd.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/92/58/f4/9258f4fc5920f7307f7ef1af22b64cb6.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/52/51/cc/5251cc4b4b648311626fd9a5f25fd16b.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="activations">
-  <h2>Brand Activations <span class="count">6</span></h2>
-  <div class="desc">Experiential events that create stories.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/c4/46/35/c44635fd44fa4644f8243a02696fed29.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/2d/f2/d5/2df2d5a5a970779b01ce05985e4528e1.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/e6/59/c6/e659c6be668dc0d28b791158332f91d7.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/ef/83/83/ef8383117694097eeca5de727e016f99.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/63/57/15/6357154462c136688441055a280b5941.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/97/e6/bf/97e6bf17638d8c80cc0a3822fc3e2b62.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="typography">
-  <h2>Bold Typography & Design <span class="count">8</span></h2>
-  <div class="desc">Visual language that says future without saying it.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/b9/59/82/b95982319a7f95944a6381d00f94ac1b.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/4b/4d/48/4b4d48741007cc8906033a2d41a1efae.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/f7/9f/c0/f79fc03df8104a825500366e1d95c0b3.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/e2/fc/89/e2fc89daa535fa6b8ba67a39c884834a.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/d3/b6/08/d3b60899b0daeacb92ba5317cf1bcec1.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/5b/bd/e6/5bbde61cbfd1a96922cade7522b3078d.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/47/97/5c/47975ca0b7906dd8121008a973f47bcc.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/54/f7/7d/54f77d848c49dac7d88d7cbdfb3b6581.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="performance">
-  <h2>Live Performance <span class="count">8</span></h2>
-  <div class="desc">The humans who use sound. The emotional connection.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/a3/7f/a6/a37fa657c1166c27262242c40aca065c.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/e1/12/c6/e112c6c2faf141f56a725907fd42c033.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/fe/5b/c0/fe5bc0c5b4eaba16800e62ac8eefed2d.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/74/2b/84/742b84cd0f4e2d30b7d03662713bd63f.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/d9/24/64/d92464aed0360a941ff4b943a505075d.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/d0/f7/12/d0f71234ce4725d61478c4b6ffd8fe0d.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/1c/75/d8/1c75d813d259f41175c221cffe5966a9.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/d1/44/0f/d1440f4a603a6fde49f8fae0313efe45.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="spatial">
-  <h2>Spatial Audio & Sound Visualization <span class="count">8</span></h2>
-  <div class="desc">Making the invisible visible. Waveforms, frequency landscapes.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/89/8f/0e/898f0e8353d00d087200d83e0c3f38d8.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/23/1b/da/231bda250757512c0bee47b9780dac40.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/f5/03/ea/f503eaf1b17c911323aa488530903937.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/99/ff/1e/99ff1eaaba49bccaee988f10339d6d21.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/94/2b/c0/942bc08d489e309732f07e5ced42e373.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/aa/56/00/aa560047eef4e6a7dac926c6d6555c74.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/fd/be/f3/fdbef31283b00c8c25c9f36ef313399f.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/06/13/41/061341442661306353f221e924af95c0.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="engineers">
-  <h2>Sound Engineers & Backstage <span class="count">6</span></h2>
-  <div class="desc">The invisible heroes. Mixing consoles, front-of-house.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/c4/1d/57/c41d57ffae23a218bdc061a9f0fa43be.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/44/de/be/44debebd45c0216eb8f23726b3b35fc1.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/f0/4d/2c/f04d2cf3ab32096c786caf5616f5ec0f.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/0e/61/3e/0e613e1dd133cb9bea3799972a3e835a.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/60/05/c6/6005c63bfddbd002b20e3a64a8950f41.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/80/ed/67/80ed670e48220b56fdec623efec035a3.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="festival">
-  <h2>Festival Community & Joy <span class="count">8</span></h2>
-  <div class="desc">Diverse, joyful, connected. Sound as the thread that binds.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/63/4b/da/634bda273e6624921e90812b055a3a3d.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/9e/da/51/9eda512b6df846b0ec8cb5d967ead8c3.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/2a/cb/c3/2acbc3f32feafb6d334e4a6bc153a084.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/94/25/ab/9425abb8f5123f73d6c5674ca4b7771c.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/63/89/fb/6389fbccb2b4dffd992c0bc6f3185c3f.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/a1/32/c3/a132c355e2076150f6ba13fc92f32f69.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/6a/96/0b/6a960bf2a226b5762039294b92bcf331.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/95/ab/d4/95abd4636852f89b8b84804a408e5c51.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="light">
-  <h2>Immersive Light Experiences <span class="count">8</span></h2>
-  <div class="desc">Walking through light, sound, and space.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/60/9d/d2/609dd241b4982728d82b3c7a2c8a7f71.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/05/e5/d5/05e5d5a3d20db86b3e2570869ac43f9a.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/47/bb/7e/47bb7ea5f54190882e87d4263ba7d0f6.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/d2/84/66/d284661b94e55d81383e94b65639d22f.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/5c/44/58/5c4458053bfb496b7f4fbe291e2dabc1.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/c9/c3/d7/c9c3d7d366ecc7e5e9374cf5113ca75e.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/7b/72/f8/7b72f8827b5dac158f88c581f59d7923.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/84/67/88/846788f7262f28e65edf19c4e25a25f0.jpg" loading="lazy">
-  </div>
-</div>
-<div class="section" id="anniversary">
-  <h2>Anniversary & Centennial Design <span class="count">9</span></h2>
-  <div class="desc">How the best brands handle milestones.</div>
-  <div class="grid">
-    <img src="https://i.pinimg.com/736x/73/d4/9d/73d49dd8d71a4ba7936b65ee7fc8a253.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/9b/7c/63/9b7c63e9389f10718b9727ca8546365e.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/9d/fc/46/9dfc4632ffd7366b17cdbb37fd8c2590.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/7e/1c/8c/7e1c8cdc6a3d2d99c60df8ed88fd5515.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/f0/e4/73/f0e473b75a21ec2a8350c566a360ee20.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/8e/36/40/8e36401fce6e09e7e5126821b11e1d4d.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/99/2b/e6/992be6e30a5b5a4ca25996b9fca13575.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/b2/46/18/b2461872f92bf8655461c537874af14c.jpg" loading="lazy">
-    <img src="https://i.pinimg.com/736x/fc/2f/b0/fc2fb01e3857e8ee8a4b5f3c59ab7f9e.jpg" loading="lazy">
-  </div>
-</div>
-<div style="height:80px"></div>
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src=""></div>
-<script>
-document.querySelectorAll('.grid img').forEach(img=>{img.addEventListener('click',()=>{document.getElementById('lightbox-img').src=img.src;document.getElementById('lightbox').classList.add('active')})});
-document.querySelectorAll('nav a').forEach(a=>{a.addEventListener('click',()=>{document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active')})});
-const secs=document.querySelectorAll('.section');const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));const l=document.querySelector('nav a[href="#'+entry.target.id+'"]');if(l)l.classList.add('active')}})},{threshold:0.3});secs.forEach(s=>obs.observe(s));
-</script>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#immersive" data-section="immersive">Immersive Sound</a></li>
+            <li><a href="#stage" data-section="stage">Futuristic Stages</a></li>
+            <li><a href="#crowds" data-section="crowds">Celebrations</a></li>
+            <li><a href="#brand" data-section="brand">Brand Activation</a></li>
+            <li><a href="#typography" data-section="typography">Typography</a></li>
+            <li><a href="#performance" data-section="performance">Live Performance</a></li>
+            <li><a href="#spatial" data-section="spatial">Spatial Audio</a></li>
+            <li><a href="#engineers" data-section="engineers">Sound Engineers</a></li>
+            <li><a href="#community" data-section="community">Community</a></li>
+            <li><a href="#light" data-section="light">Light & Space</a></li>
+            <li><a href="#anniversary" data-section="anniversary">Anniversary</a></li>
+            <li><a href="#product" data-section="product">Product Design</a></li>
+            <li><a href="#experiential" data-section="experiential">Installations</a></li>
+            <li><a href="#backstage" data-section="backstage">Behind Scenes</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <h1>EV100 — Electro-Voice Centennial Vision Board</h1>
+        <p class="subtitle">100 Years of Sound Innovation — Expanded Edition</p>
+        <div class="total-count">
+            <strong>137 Images</strong>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <section id="immersive">
+            <h2>
+                Immersive Sound Art
+                <span class="image-count">10 images</span>
+            </h2>
+            <p>Where sound becomes visual art.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/47/c3/3e/47c33e25d4eec31fe42d289f63784978.jpg" data-section="immersive" data-index="0">
+                    <img src="https://i.pinimg.com/736x/47/c3/3e/47c33e25d4eec31fe42d289f63784978.jpg" alt="Immersive Sound Art - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/02/12/b5/0212b57447dd7eb648d63970bc511525.jpg" data-section="immersive" data-index="1">
+                    <img src="https://i.pinimg.com/736x/02/12/b5/0212b57447dd7eb648d63970bc511525.jpg" alt="Immersive Sound Art - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/65/9c/b4/659cb462700d67601b99304adce6a0f5.jpg" data-section="immersive" data-index="2">
+                    <img src="https://i.pinimg.com/736x/65/9c/b4/659cb462700d67601b99304adce6a0f5.jpg" alt="Immersive Sound Art - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/6e/9f/9a/6e9f9aee8ede0796c0dd24b738e316dd.jpg" data-section="immersive" data-index="3">
+                    <img src="https://i.pinimg.com/736x/6e/9f/9a/6e9f9aee8ede0796c0dd24b738e316dd.jpg" alt="Immersive Sound Art - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/5b/e8/b0/5be8b02014994ce7d21c4f9250e1d516.jpg" data-section="immersive" data-index="4">
+                    <img src="https://i.pinimg.com/736x/5b/e8/b0/5be8b02014994ce7d21c4f9250e1d516.jpg" alt="Immersive Sound Art - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/10/d4/50/10d450f0b5291c46406a14c5550c96b7.jpg" data-section="immersive" data-index="5">
+                    <img src="https://i.pinimg.com/736x/10/d4/50/10d450f0b5291c46406a14c5550c96b7.jpg" alt="Immersive Sound Art - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/72/4d/e6/724de6a100b5d8137569123f1bc1bae9.jpg" data-section="immersive" data-index="6">
+                    <img src="https://i.pinimg.com/736x/72/4d/e6/724de6a100b5d8137569123f1bc1bae9.jpg" alt="Immersive Sound Art - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/f9/b9/09/f9b90933629f425d51d16d3990036b87.jpg" data-section="immersive" data-index="7">
+                    <img src="https://i.pinimg.com/736x/f9/b9/09/f9b90933629f425d51d16d3990036b87.jpg" alt="Immersive Sound Art - Image 8" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/e5/48/41/e548419fe15819e3306a2a84f9661201.jpg" data-section="immersive" data-index="8">
+                    <img src="https://i.pinimg.com/736x/e5/48/41/e548419fe15819e3306a2a84f9661201.jpg" alt="Immersive Sound Art - Image 9" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/06/63/ac/0663ac00de66966ebffe8d4cd8b20521.jpg" data-section="immersive" data-index="9">
+                    <img src="https://i.pinimg.com/736x/06/63/ac/0663ac00de66966ebffe8d4cd8b20521.jpg" alt="Immersive Sound Art - Image 10" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="stage">
+            <h2>
+                Futuristic Stage Design
+                <span class="image-count">10 images</span>
+            </h2>
+            <p>Tomorrow's stages, built for today's performers.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/95/6a/e3/956ae36f38fac4c2fda42dae42d24172.jpg" data-section="stage" data-index="0">
+                    <img src="https://i.pinimg.com/736x/95/6a/e3/956ae36f38fac4c2fda42dae42d24172.jpg" alt="Futuristic Stage Design - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/a5/b4/e3/a5b4e3a5a853cd901d4c08d07e1e315d.jpg" data-section="stage" data-index="1">
+                    <img src="https://i.pinimg.com/736x/a5/b4/e3/a5b4e3a5a853cd901d4c08d07e1e315d.jpg" alt="Futuristic Stage Design - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/f6/fd/b6/f6fdb606f5d4b3570a63d81e1fc4e348.jpg" data-section="stage" data-index="2">
+                    <img src="https://i.pinimg.com/736x/f6/fd/b6/f6fdb606f5d4b3570a63d81e1fc4e348.jpg" alt="Futuristic Stage Design - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/56/7b/6e/567b6e87457065e24d4cb7dbc0a52e8c.jpg" data-section="stage" data-index="3">
+                    <img src="https://i.pinimg.com/736x/56/7b/6e/567b6e87457065e24d4cb7dbc0a52e8c.jpg" alt="Futuristic Stage Design - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/f4/09/de/f409dedc332942884710fe3f03aee3e6.jpg" data-section="stage" data-index="4">
+                    <img src="https://i.pinimg.com/736x/f4/09/de/f409dedc332942884710fe3f03aee3e6.jpg" alt="Futuristic Stage Design - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/aa/b8/68/aab8681820e399d2e9092572e734f3c1.jpg" data-section="stage" data-index="5">
+                    <img src="https://i.pinimg.com/736x/aa/b8/68/aab8681820e399d2e9092572e734f3c1.jpg" alt="Futuristic Stage Design - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/bb/48/0a/bb480ae557d612df51633efea63b81ea.jpg" data-section="stage" data-index="6">
+                    <img src="https://i.pinimg.com/736x/bb/48/0a/bb480ae557d612df51633efea63b81ea.jpg" alt="Futuristic Stage Design - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/80/6e/95/806e9535618610d5691a844267aea73e.jpg" data-section="stage" data-index="7">
+                    <img src="https://i.pinimg.com/736x/80/6e/95/806e9535618610d5691a844267aea73e.jpg" alt="Futuristic Stage Design - Image 8" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/00/66/8a/00668a0123f06121f9de822675010f0d.jpg" data-section="stage" data-index="8">
+                    <img src="https://i.pinimg.com/736x/00/66/8a/00668a0123f06121f9de822675010f0d.jpg" alt="Futuristic Stage Design - Image 9" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/73/15/27/731527fa80655604409331e100d56e58.jpg" data-section="stage" data-index="9">
+                    <img src="https://i.pinimg.com/736x/73/15/27/731527fa80655604409331e100d56e58.jpg" alt="Futuristic Stage Design - Image 10" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="crowds">
+            <h2>
+                Celebrations & Crowds
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>The energy of a hundred thousand voices.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/1f/31/0e/1f310e918ddd6d3499d2dc4f603c424f.jpg" data-section="crowds" data-index="0">
+                    <img src="https://i.pinimg.com/736x/1f/31/0e/1f310e918ddd6d3499d2dc4f603c424f.jpg" alt="Celebrations & Crowds - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/ec/fe/08/ecfe08c3017ee785447632ac271c1971.jpg" data-section="crowds" data-index="1">
+                    <img src="https://i.pinimg.com/736x/ec/fe/08/ecfe08c3017ee785447632ac271c1971.jpg" alt="Celebrations & Crowds - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/17/54/98/175498e1f0d0416f14a27432baa8c61b.jpg" data-section="crowds" data-index="2">
+                    <img src="https://i.pinimg.com/736x/17/54/98/175498e1f0d0416f14a27432baa8c61b.jpg" alt="Celebrations & Crowds - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/53/3d/b3/533db3a193581bd0f59330724f4409c5.jpg" data-section="crowds" data-index="3">
+                    <img src="https://i.pinimg.com/736x/53/3d/b3/533db3a193581bd0f59330724f4409c5.jpg" alt="Celebrations & Crowds - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/42/e6/fe/42e6fe1da36cefffc4566a0a1480067b.jpg" data-section="crowds" data-index="4">
+                    <img src="https://i.pinimg.com/736x/42/e6/fe/42e6fe1da36cefffc4566a0a1480067b.jpg" alt="Celebrations & Crowds - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/71/3d/00/713d00079ea8ed2f87760395e2593acd.jpg" data-section="crowds" data-index="5">
+                    <img src="https://i.pinimg.com/736x/71/3d/00/713d00079ea8ed2f87760395e2593acd.jpg" alt="Celebrations & Crowds - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/92/58/f4/9258f4fc5920f7307f7ef1af22b64cb6.jpg" data-section="crowds" data-index="6">
+                    <img src="https://i.pinimg.com/736x/92/58/f4/9258f4fc5920f7307f7ef1af22b64cb6.jpg" alt="Celebrations & Crowds - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/52/51/cc/5251cc4b4b648311626fd9a5f25fd16b.jpg" data-section="crowds" data-index="7">
+                    <img src="https://i.pinimg.com/736x/52/51/cc/5251cc4b4b648311626fd9a5f25fd16b.jpg" alt="Celebrations & Crowds - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="brand">
+            <h2>
+                Brand Activation
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>Turning brand stories into unforgettable experiences.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/c4/46/35/c44635fd44fa4644f8243a02696fed29.jpg" data-section="brand" data-index="0">
+                    <img src="https://i.pinimg.com/736x/c4/46/35/c44635fd44fa4644f8243a02696fed29.jpg" alt="Brand Activation - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/2d/f2/d5/2df2d5a5a970779b01ce05985e4528e1.jpg" data-section="brand" data-index="1">
+                    <img src="https://i.pinimg.com/736x/2d/f2/d5/2df2d5a5a970779b01ce05985e4528e1.jpg" alt="Brand Activation - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/e6/59/c6/e659c6be668dc0d28b791158332f91d7.jpg" data-section="brand" data-index="2">
+                    <img src="https://i.pinimg.com/736x/e6/59/c6/e659c6be668dc0d28b791158332f91d7.jpg" alt="Brand Activation - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/ef/83/83/ef8383117694097eeca5de727e016f99.jpg" data-section="brand" data-index="3">
+                    <img src="https://i.pinimg.com/736x/ef/83/83/ef8383117694097eeca5de727e016f99.jpg" alt="Brand Activation - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/63/57/15/6357154462c136688441055a280b5941.jpg" data-section="brand" data-index="4">
+                    <img src="https://i.pinimg.com/736x/63/57/15/6357154462c136688441055a280b5941.jpg" alt="Brand Activation - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/97/e6/bf/97e6bf17638d8c80cc0a3822fc3e2b62.jpg" data-section="brand" data-index="5">
+                    <img src="https://i.pinimg.com/736x/97/e6/bf/97e6bf17638d8c80cc0a3822fc3e2b62.jpg" alt="Brand Activation - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/d8/88/53/d888530c87c6794976d2825df47c6159.jpg" data-section="brand" data-index="6">
+                    <img src="https://i.pinimg.com/736x/d8/88/53/d888530c87c6794976d2825df47c6159.jpg" alt="Brand Activation - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/a6/7f/30/a67f302703e72eb2e1dd54ad510f6ff2.jpg" data-section="brand" data-index="7">
+                    <img src="https://i.pinimg.com/736x/a6/7f/30/a67f302703e72eb2e1dd54ad510f6ff2.jpg" alt="Brand Activation - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="typography">
+            <h2>
+                Bold Typography
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>Words that demand attention.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/b9/59/82/b95982319a7f95944a6381d00f94ac1b.jpg" data-section="typography" data-index="0">
+                    <img src="https://i.pinimg.com/736x/b9/59/82/b95982319a7f95944a6381d00f94ac1b.jpg" alt="Bold Typography - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/4b/4d/48/4b4d48741007cc8906033a2d41a1efae.jpg" data-section="typography" data-index="1">
+                    <img src="https://i.pinimg.com/736x/4b/4d/48/4b4d48741007cc8906033a2d41a1efae.jpg" alt="Bold Typography - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/f7/9f/c0/f79fc03df8104a825500366e1d95c0b3.jpg" data-section="typography" data-index="2">
+                    <img src="https://i.pinimg.com/736x/f7/9f/c0/f79fc03df8104a825500366e1d95c0b3.jpg" alt="Bold Typography - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/e2/fc/89/e2fc89daa535fa6b8ba67a39c884834a.jpg" data-section="typography" data-index="3">
+                    <img src="https://i.pinimg.com/736x/e2/fc/89/e2fc89daa535fa6b8ba67a39c884834a.jpg" alt="Bold Typography - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/d3/b6/08/d3b60899b0daeacb92ba5317cf1bcec1.jpg" data-section="typography" data-index="4">
+                    <img src="https://i.pinimg.com/736x/d3/b6/08/d3b60899b0daeacb92ba5317cf1bcec1.jpg" alt="Bold Typography - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/5b/bd/e6/5bbde61cbfd1a96922cade7522b3078d.jpg" data-section="typography" data-index="5">
+                    <img src="https://i.pinimg.com/736x/5b/bd/e6/5bbde61cbfd1a96922cade7522b3078d.jpg" alt="Bold Typography - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/47/97/5c/47975ca0b7906dd8121008a973f47bcc.jpg" data-section="typography" data-index="6">
+                    <img src="https://i.pinimg.com/736x/47/97/5c/47975ca0b7906dd8121008a973f47bcc.jpg" alt="Bold Typography - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/54/f7/7d/54f77d848c49dac7d88d7cbdfb3b6581.jpg" data-section="typography" data-index="7">
+                    <img src="https://i.pinimg.com/736x/54/f7/7d/54f77d848c49dac7d88d7cbdfb3b6581.jpg" alt="Bold Typography - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="performance">
+            <h2>
+                Live Performance
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>Raw emotion, center stage.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/a3/7f/a6/a37fa657c1166c27262242c40aca065c.jpg" data-section="performance" data-index="0">
+                    <img src="https://i.pinimg.com/736x/a3/7f/a6/a37fa657c1166c27262242c40aca065c.jpg" alt="Live Performance - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/e1/12/c6/e112c6c2faf141f56a725907fd42c033.jpg" data-section="performance" data-index="1">
+                    <img src="https://i.pinimg.com/736x/e1/12/c6/e112c6c2faf141f56a725907fd42c033.jpg" alt="Live Performance - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/fe/5b/c0/fe5bc0c5b4eaba16800e62ac8eefed2d.jpg" data-section="performance" data-index="2">
+                    <img src="https://i.pinimg.com/736x/fe/5b/c0/fe5bc0c5b4eaba16800e62ac8eefed2d.jpg" alt="Live Performance - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/74/2b/84/742b84cd0f4e2d30b7d03662713bd63f.jpg" data-section="performance" data-index="3">
+                    <img src="https://i.pinimg.com/736x/74/2b/84/742b84cd0f4e2d30b7d03662713bd63f.jpg" alt="Live Performance - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/d9/24/64/d92464aed0360a941ff4b943a505075d.jpg" data-section="performance" data-index="4">
+                    <img src="https://i.pinimg.com/736x/d9/24/64/d92464aed0360a941ff4b943a505075d.jpg" alt="Live Performance - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/d0/f7/12/d0f71234ce4725d61478c4b6ffd8fe0d.jpg" data-section="performance" data-index="5">
+                    <img src="https://i.pinimg.com/736x/d0/f7/12/d0f71234ce4725d61478c4b6ffd8fe0d.jpg" alt="Live Performance - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/1c/75/d8/1c75d813d259f41175c221cffe5966a9.jpg" data-section="performance" data-index="6">
+                    <img src="https://i.pinimg.com/736x/1c/75/d8/1c75d813d259f41175c221cffe5966a9.jpg" alt="Live Performance - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/d1/44/0f/d1440f4a603a6fde49f8fae0313efe45.jpg" data-section="performance" data-index="7">
+                    <img src="https://i.pinimg.com/736x/d1/44/0f/d1440f4a603a6fde49f8fae0313efe45.jpg" alt="Live Performance - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="spatial">
+            <h2>
+                Spatial Audio
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>Sound that surrounds and transforms.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/89/8f/0e/898f0e8353d00d087200d83e0c3f38d8.jpg" data-section="spatial" data-index="0">
+                    <img src="https://i.pinimg.com/736x/89/8f/0e/898f0e8353d00d087200d83e0c3f38d8.jpg" alt="Spatial Audio - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/23/1b/da/231bda250757512c0bee47b9780dac40.jpg" data-section="spatial" data-index="1">
+                    <img src="https://i.pinimg.com/736x/23/1b/da/231bda250757512c0bee47b9780dac40.jpg" alt="Spatial Audio - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/f5/03/ea/f503eaf1b17c911323aa488530903937.jpg" data-section="spatial" data-index="2">
+                    <img src="https://i.pinimg.com/736x/f5/03/ea/f503eaf1b17c911323aa488530903937.jpg" alt="Spatial Audio - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/99/ff/1e/99ff1eaaba49bccaee988f10339d6d21.jpg" data-section="spatial" data-index="3">
+                    <img src="https://i.pinimg.com/736x/99/ff/1e/99ff1eaaba49bccaee988f10339d6d21.jpg" alt="Spatial Audio - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/94/2b/c0/942bc08d489e309732f07e5ced42e373.jpg" data-section="spatial" data-index="4">
+                    <img src="https://i.pinimg.com/736x/94/2b/c0/942bc08d489e309732f07e5ced42e373.jpg" alt="Spatial Audio - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/aa/56/00/aa560047eef4e6a7dac926c6d6555c74.jpg" data-section="spatial" data-index="5">
+                    <img src="https://i.pinimg.com/736x/aa/56/00/aa560047eef4e6a7dac926c6d6555c74.jpg" alt="Spatial Audio - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/fd/be/f3/fdbef31283b00c8c25c9f36ef313399f.jpg" data-section="spatial" data-index="6">
+                    <img src="https://i.pinimg.com/736x/fd/be/f3/fdbef31283b00c8c25c9f36ef313399f.jpg" alt="Spatial Audio - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/06/13/41/061341442661306353f221e924af95c0.jpg" data-section="spatial" data-index="7">
+                    <img src="https://i.pinimg.com/736x/06/13/41/061341442661306353f221e924af95c0.jpg" alt="Spatial Audio - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="engineers">
+            <h2>
+                Sound Engineers
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>The invisible artists behind every great sound.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/c4/1d/57/c41d57ffae23a218bdc061a9f0fa43be.jpg" data-section="engineers" data-index="0">
+                    <img src="https://i.pinimg.com/736x/c4/1d/57/c41d57ffae23a218bdc061a9f0fa43be.jpg" alt="Sound Engineers - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/44/de/be/44debebd45c0216eb8f23726b3b35fc1.jpg" data-section="engineers" data-index="1">
+                    <img src="https://i.pinimg.com/736x/44/de/be/44debebd45c0216eb8f23726b3b35fc1.jpg" alt="Sound Engineers - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/f0/4d/2c/f04d2cf3ab32096c786caf5616f5ec0f.jpg" data-section="engineers" data-index="2">
+                    <img src="https://i.pinimg.com/736x/f0/4d/2c/f04d2cf3ab32096c786caf5616f5ec0f.jpg" alt="Sound Engineers - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/0e/61/3e/0e613e1dd133cb9bea3799972a3e835a.jpg" data-section="engineers" data-index="3">
+                    <img src="https://i.pinimg.com/736x/0e/61/3e/0e613e1dd133cb9bea3799972a3e835a.jpg" alt="Sound Engineers - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/60/05/c6/6005c63bfddbd002b20e3a64a8950f41.jpg" data-section="engineers" data-index="4">
+                    <img src="https://i.pinimg.com/736x/60/05/c6/6005c63bfddbd002b20e3a64a8950f41.jpg" alt="Sound Engineers - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/80/ed/67/80ed670e48220b56fdec623efec035a3.jpg" data-section="engineers" data-index="5">
+                    <img src="https://i.pinimg.com/736x/80/ed/67/80ed670e48220b56fdec623efec035a3.jpg" alt="Sound Engineers - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/e3/59/60/e35960a76ce1733ff4d1e242f60eb112.jpg" data-section="engineers" data-index="6">
+                    <img src="https://i.pinimg.com/736x/e3/59/60/e35960a76ce1733ff4d1e242f60eb112.jpg" alt="Sound Engineers - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/9f/3f/65/9f3f65466ac9bad8f86c3d913091e2f7.jpg" data-section="engineers" data-index="7">
+                    <img src="https://i.pinimg.com/736x/9f/3f/65/9f3f65466ac9bad8f86c3d913091e2f7.jpg" alt="Sound Engineers - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="community">
+            <h2>
+                Festival Community
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>United by music, connected by sound.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/63/4b/da/634bda273e6624921e90812b055a3a3d.jpg" data-section="community" data-index="0">
+                    <img src="https://i.pinimg.com/736x/63/4b/da/634bda273e6624921e90812b055a3a3d.jpg" alt="Festival Community - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/9e/da/51/9eda512b6df846b0ec8cb5d967ead8c3.jpg" data-section="community" data-index="1">
+                    <img src="https://i.pinimg.com/736x/9e/da/51/9eda512b6df846b0ec8cb5d967ead8c3.jpg" alt="Festival Community - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/2a/cb/c3/2acbc3f32feafb6d334e4a6bc153a084.jpg" data-section="community" data-index="2">
+                    <img src="https://i.pinimg.com/736x/2a/cb/c3/2acbc3f32feafb6d334e4a6bc153a084.jpg" alt="Festival Community - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/94/25/ab/9425abb8f5123f73d6c5674ca4b7771c.jpg" data-section="community" data-index="3">
+                    <img src="https://i.pinimg.com/736x/94/25/ab/9425abb8f5123f73d6c5674ca4b7771c.jpg" alt="Festival Community - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/63/89/fb/6389fbccb2b4dffd992c0bc6f3185c3f.jpg" data-section="community" data-index="4">
+                    <img src="https://i.pinimg.com/736x/63/89/fb/6389fbccb2b4dffd992c0bc6f3185c3f.jpg" alt="Festival Community - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/a1/32/c3/a132c355e2076150f6ba13fc92f32f69.jpg" data-section="community" data-index="5">
+                    <img src="https://i.pinimg.com/736x/a1/32/c3/a132c355e2076150f6ba13fc92f32f69.jpg" alt="Festival Community - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/6a/96/0b/6a960bf2a226b5762039294b92bcf331.jpg" data-section="community" data-index="6">
+                    <img src="https://i.pinimg.com/736x/6a/96/0b/6a960bf2a226b5762039294b92bcf331.jpg" alt="Festival Community - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/95/ab/d4/95abd4636852f89b8b84804a408e5c51.jpg" data-section="community" data-index="7">
+                    <img src="https://i.pinimg.com/736x/95/ab/d4/95abd4636852f89b8b84804a408e5c51.jpg" alt="Festival Community - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="light">
+            <h2>
+                Light Experiences
+                <span class="image-count">8 images</span>
+            </h2>
+            <p>Walking through light, sound, and space.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/60/9d/d2/609dd241b4982728d82b3c7a2c8a7f71.jpg" data-section="light" data-index="0">
+                    <img src="https://i.pinimg.com/736x/60/9d/d2/609dd241b4982728d82b3c7a2c8a7f71.jpg" alt="Light Experiences - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/05/e5/d5/05e5d5a3d20db86b3e2570869ac43f9a.jpg" data-section="light" data-index="1">
+                    <img src="https://i.pinimg.com/736x/05/e5/d5/05e5d5a3d20db86b3e2570869ac43f9a.jpg" alt="Light Experiences - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/47/bb/7e/47bb7ea5f54190882e87d4263ba7d0f6.jpg" data-section="light" data-index="2">
+                    <img src="https://i.pinimg.com/736x/47/bb/7e/47bb7ea5f54190882e87d4263ba7d0f6.jpg" alt="Light Experiences - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/d2/84/66/d284661b94e55d81383e94b65639d22f.jpg" data-section="light" data-index="3">
+                    <img src="https://i.pinimg.com/736x/d2/84/66/d284661b94e55d81383e94b65639d22f.jpg" alt="Light Experiences - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/5c/44/58/5c4458053bfb496b7f4fbe291e2dabc1.jpg" data-section="light" data-index="4">
+                    <img src="https://i.pinimg.com/736x/5c/44/58/5c4458053bfb496b7f4fbe291e2dabc1.jpg" alt="Light Experiences - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/c9/c3/d7/c9c3d7d366ecc7e5e9374cf5113ca75e.jpg" data-section="light" data-index="5">
+                    <img src="https://i.pinimg.com/736x/c9/c3/d7/c9c3d7d366ecc7e5e9374cf5113ca75e.jpg" alt="Light Experiences - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/7b/72/f8/7b72f8827b5dac158f88c581f59d7923.jpg" data-section="light" data-index="6">
+                    <img src="https://i.pinimg.com/736x/7b/72/f8/7b72f8827b5dac158f88c581f59d7923.jpg" alt="Light Experiences - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/84/67/88/846788f7262f28e65edf19c4e25a25f0.jpg" data-section="light" data-index="7">
+                    <img src="https://i.pinimg.com/736x/84/67/88/846788f7262f28e65edf19c4e25a25f0.jpg" alt="Light Experiences - Image 8" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="anniversary">
+            <h2>
+                Anniversary Branding
+                <span class="image-count">9 images</span>
+            </h2>
+            <p>How the best brands honor milestones.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/73/d4/9d/73d49dd8d71a4ba7936b65ee7fc8a253.jpg" data-section="anniversary" data-index="0">
+                    <img src="https://i.pinimg.com/736x/73/d4/9d/73d49dd8d71a4ba7936b65ee7fc8a253.jpg" alt="Anniversary Branding - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/9b/7c/63/9b7c63e9389f10718b9727ca8546365e.jpg" data-section="anniversary" data-index="1">
+                    <img src="https://i.pinimg.com/736x/9b/7c/63/9b7c63e9389f10718b9727ca8546365e.jpg" alt="Anniversary Branding - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/9d/fc/46/9dfc4632ffd7366b17cdbb37fd8c2590.jpg" data-section="anniversary" data-index="2">
+                    <img src="https://i.pinimg.com/736x/9d/fc/46/9dfc4632ffd7366b17cdbb37fd8c2590.jpg" alt="Anniversary Branding - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/7e/1c/8c/7e1c8cdc6a3d2d99c60df8ed88fd5515.jpg" data-section="anniversary" data-index="3">
+                    <img src="https://i.pinimg.com/736x/7e/1c/8c/7e1c8cdc6a3d2d99c60df8ed88fd5515.jpg" alt="Anniversary Branding - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/f0/e4/73/f0e473b75a21ec2a8350c566a360ee20.jpg" data-section="anniversary" data-index="4">
+                    <img src="https://i.pinimg.com/736x/f0/e4/73/f0e473b75a21ec2a8350c566a360ee20.jpg" alt="Anniversary Branding - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/8e/36/40/8e36401fce6e09e7e5126821b11e1d4d.jpg" data-section="anniversary" data-index="5">
+                    <img src="https://i.pinimg.com/736x/8e/36/40/8e36401fce6e09e7e5126821b11e1d4d.jpg" alt="Anniversary Branding - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/99/2b/e6/992be6e30a5b5a4ca25996b9fca13575.jpg" data-section="anniversary" data-index="6">
+                    <img src="https://i.pinimg.com/736x/99/2b/e6/992be6e30a5b5a4ca25996b9fca13575.jpg" alt="Anniversary Branding - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/b2/46/18/b2461872f92bf8655461c537874af14c.jpg" data-section="anniversary" data-index="7">
+                    <img src="https://i.pinimg.com/736x/b2/46/18/b2461872f92bf8655461c537874af14c.jpg" alt="Anniversary Branding - Image 8" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/fc/2f/b0/fc2fb01e3857e8ee8a4b5f3c59ab7f9e.jpg" data-section="anniversary" data-index="8">
+                    <img src="https://i.pinimg.com/736x/fc/2f/b0/fc2fb01e3857e8ee8a4b5f3c59ab7f9e.jpg" alt="Anniversary Branding - Image 9" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="product">
+            <h2>
+                Product Design
+                <span class="image-count">16 images</span>
+            </h2>
+            <p>The art and craft of audio hardware.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/c6/72/7e/c6727e356b03488802e0d5ad5a5bc133.jpg" data-section="product" data-index="0">
+                    <img src="https://i.pinimg.com/736x/c6/72/7e/c6727e356b03488802e0d5ad5a5bc133.jpg" alt="Product Design - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/5b/45/fb/5b45fb82411e7b48041dfe4f922251dc.jpg" data-section="product" data-index="1">
+                    <img src="https://i.pinimg.com/736x/5b/45/fb/5b45fb82411e7b48041dfe4f922251dc.jpg" alt="Product Design - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/65/75/1e/65751ea5da8a8d024b8bf68116a406b0.jpg" data-section="product" data-index="2">
+                    <img src="https://i.pinimg.com/736x/65/75/1e/65751ea5da8a8d024b8bf68116a406b0.jpg" alt="Product Design - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/e0/e8/18/e0e818eb3f6a8faab3f6b320ab616f72.jpg" data-section="product" data-index="3">
+                    <img src="https://i.pinimg.com/736x/e0/e8/18/e0e818eb3f6a8faab3f6b320ab616f72.jpg" alt="Product Design - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/27/f6/0d/27f60daa86a2bbaeac6ef46dd4489b60.jpg" data-section="product" data-index="4">
+                    <img src="https://i.pinimg.com/736x/27/f6/0d/27f60daa86a2bbaeac6ef46dd4489b60.jpg" alt="Product Design - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/0a/5b/1f/0a5b1fb7644d3a757748860b1953c9fa.jpg" data-section="product" data-index="5">
+                    <img src="https://i.pinimg.com/736x/0a/5b/1f/0a5b1fb7644d3a757748860b1953c9fa.jpg" alt="Product Design - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/e7/9e/75/e79e7566b04b0a71e0f95f2d5136d628.jpg" data-section="product" data-index="6">
+                    <img src="https://i.pinimg.com/736x/e7/9e/75/e79e7566b04b0a71e0f95f2d5136d628.jpg" alt="Product Design - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/2f/cc/30/2fcc3023c83f54234d1019f9e4d47404.jpg" data-section="product" data-index="7">
+                    <img src="https://i.pinimg.com/736x/2f/cc/30/2fcc3023c83f54234d1019f9e4d47404.jpg" alt="Product Design - Image 8" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/89/82/d7/8982d7531c2e3b7c8f6c05e5fbd6526a.jpg" data-section="product" data-index="8">
+                    <img src="https://i.pinimg.com/736x/89/82/d7/8982d7531c2e3b7c8f6c05e5fbd6526a.jpg" alt="Product Design - Image 9" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/8a/24/40/8a2440158da486149683b6dad58fe38f.jpg" data-section="product" data-index="9">
+                    <img src="https://i.pinimg.com/736x/8a/24/40/8a2440158da486149683b6dad58fe38f.jpg" alt="Product Design - Image 10" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/48/f3/85/48f3854c9ea99ae7927f3179fd069b28.jpg" data-section="product" data-index="10">
+                    <img src="https://i.pinimg.com/736x/48/f3/85/48f3854c9ea99ae7927f3179fd069b28.jpg" alt="Product Design - Image 11" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/5d/36/a8/5d36a843b96295f2060a04190a8046e6.jpg" data-section="product" data-index="11">
+                    <img src="https://i.pinimg.com/736x/5d/36/a8/5d36a843b96295f2060a04190a8046e6.jpg" alt="Product Design - Image 12" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/81/75/a7/8175a7140954ea4451e35842d656acd8.jpg" data-section="product" data-index="12">
+                    <img src="https://i.pinimg.com/736x/81/75/a7/8175a7140954ea4451e35842d656acd8.jpg" alt="Product Design - Image 13" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/73/d7/d1/73d7d1548aa60ba0846b9b4940d415c6.jpg" data-section="product" data-index="13">
+                    <img src="https://i.pinimg.com/736x/73/d7/d1/73d7d1548aa60ba0846b9b4940d415c6.jpg" alt="Product Design - Image 14" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/61/ea/c4/61eac43723c000969af6c2e2569ff92e.jpg" data-section="product" data-index="14">
+                    <img src="https://i.pinimg.com/736x/61/ea/c4/61eac43723c000969af6c2e2569ff92e.jpg" alt="Product Design - Image 15" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/4e/a9/f4/4ea9f41e2d2d2549a77e549cf6ffb56a.jpg" data-section="product" data-index="15">
+                    <img src="https://i.pinimg.com/736x/4e/a9/f4/4ea9f41e2d2d2549a77e549cf6ffb56a.jpg" alt="Product Design - Image 16" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="experiential">
+            <h2>
+                Experiential Installations
+                <span class="image-count">15 images</span>
+            </h2>
+            <p>Immersive spaces that blur reality.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/b4/a6/b6/b4a6b6aaf3b816fc5955d74b69de871b.jpg" data-section="experiential" data-index="0">
+                    <img src="https://i.pinimg.com/736x/b4/a6/b6/b4a6b6aaf3b816fc5955d74b69de871b.jpg" alt="Experiential Installations - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/6b/fa/14/6bfa141b0d42ba60144891dec453ce91.jpg" data-section="experiential" data-index="1">
+                    <img src="https://i.pinimg.com/736x/6b/fa/14/6bfa141b0d42ba60144891dec453ce91.jpg" alt="Experiential Installations - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/5d/66/ab/5d66ab4309b69bac91416ee2cacd3a65.jpg" data-section="experiential" data-index="2">
+                    <img src="https://i.pinimg.com/736x/5d/66/ab/5d66ab4309b69bac91416ee2cacd3a65.jpg" alt="Experiential Installations - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/85/cb/ed/85cbed8b5359e9166cda2ada8f28e274.jpg" data-section="experiential" data-index="3">
+                    <img src="https://i.pinimg.com/736x/85/cb/ed/85cbed8b5359e9166cda2ada8f28e274.jpg" alt="Experiential Installations - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/b5/2e/71/b52e710d4acd715f0ea7418148259f5b.jpg" data-section="experiential" data-index="4">
+                    <img src="https://i.pinimg.com/736x/b5/2e/71/b52e710d4acd715f0ea7418148259f5b.jpg" alt="Experiential Installations - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/bd/9d/95/bd9d9569e1fe940fbdd6472492d43709.jpg" data-section="experiential" data-index="5">
+                    <img src="https://i.pinimg.com/736x/bd/9d/95/bd9d9569e1fe940fbdd6472492d43709.jpg" alt="Experiential Installations - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/56/df/b2/56dfb2a92f740795902519df9704022e.jpg" data-section="experiential" data-index="6">
+                    <img src="https://i.pinimg.com/736x/56/df/b2/56dfb2a92f740795902519df9704022e.jpg" alt="Experiential Installations - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/eb/a9/86/eba98670efd4ecec792a0c90dbc71142.jpg" data-section="experiential" data-index="7">
+                    <img src="https://i.pinimg.com/736x/eb/a9/86/eba98670efd4ecec792a0c90dbc71142.jpg" alt="Experiential Installations - Image 8" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/7e/1c/cc/7e1ccc8a3e16b2d5640f07e42d44b5a6.jpg" data-section="experiential" data-index="8">
+                    <img src="https://i.pinimg.com/736x/7e/1c/cc/7e1ccc8a3e16b2d5640f07e42d44b5a6.jpg" alt="Experiential Installations - Image 9" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/5a/e5/cb/5ae5cb2eab57bd2339544e24c81f7f14.jpg" data-section="experiential" data-index="9">
+                    <img src="https://i.pinimg.com/736x/5a/e5/cb/5ae5cb2eab57bd2339544e24c81f7f14.jpg" alt="Experiential Installations - Image 10" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/d4/37/3a/d4373a3fc80a253bf401333e3a5a357d.jpg" data-section="experiential" data-index="10">
+                    <img src="https://i.pinimg.com/736x/d4/37/3a/d4373a3fc80a253bf401333e3a5a357d.jpg" alt="Experiential Installations - Image 11" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/6d/e3/f4/6de3f468e098c89d9c75a2d27c8459b2.jpg" data-section="experiential" data-index="11">
+                    <img src="https://i.pinimg.com/736x/6d/e3/f4/6de3f468e098c89d9c75a2d27c8459b2.jpg" alt="Experiential Installations - Image 12" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/4f/6e/bb/4f6ebb5655876f81cf99a7e999fea657.jpg" data-section="experiential" data-index="12">
+                    <img src="https://i.pinimg.com/736x/4f/6e/bb/4f6ebb5655876f81cf99a7e999fea657.jpg" alt="Experiential Installations - Image 13" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/b8/ca/6e/b8ca6eda0345c928e84bef76c1559f5d.jpg" data-section="experiential" data-index="13">
+                    <img src="https://i.pinimg.com/736x/b8/ca/6e/b8ca6eda0345c928e84bef76c1559f5d.jpg" alt="Experiential Installations - Image 14" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/c0/8f/97/c08f9714f7dede92a0cfc751778645cd.jpg" data-section="experiential" data-index="14">
+                    <img src="https://i.pinimg.com/736x/c0/8f/97/c08f9714f7dede92a0cfc751778645cd.jpg" alt="Experiential Installations - Image 15" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="backstage">
+            <h2>
+                Behind the Scenes
+                <span class="image-count">13 images</span>
+            </h2>
+            <p>The magic that happens before the show.</p>
+            <div class="gallery">
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/73/23/89/732389a3e9bbfcd23ec2fd214e8db5ec.jpg" data-section="backstage" data-index="0">
+                    <img src="https://i.pinimg.com/736x/73/23/89/732389a3e9bbfcd23ec2fd214e8db5ec.jpg" alt="Behind the Scenes - Image 1" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/70/c7/79/70c779f1ebf06e8b54c103a7d52903f4.jpg" data-section="backstage" data-index="1">
+                    <img src="https://i.pinimg.com/736x/70/c7/79/70c779f1ebf06e8b54c103a7d52903f4.jpg" alt="Behind the Scenes - Image 2" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/4d/84/f7/4d84f7779e1c66ea346928ce9c95c9a4.jpg" data-section="backstage" data-index="2">
+                    <img src="https://i.pinimg.com/736x/4d/84/f7/4d84f7779e1c66ea346928ce9c95c9a4.jpg" alt="Behind the Scenes - Image 3" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/cf/3c/b1/cf3cb18584dc606362d62ba10ab77033.jpg" data-section="backstage" data-index="3">
+                    <img src="https://i.pinimg.com/736x/cf/3c/b1/cf3cb18584dc606362d62ba10ab77033.jpg" alt="Behind the Scenes - Image 4" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/90/5f/94/905f94376c2b9896e2586ed1261c1936.jpg" data-section="backstage" data-index="4">
+                    <img src="https://i.pinimg.com/736x/90/5f/94/905f94376c2b9896e2586ed1261c1936.jpg" alt="Behind the Scenes - Image 5" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/0d/17/7c/0d177cadf4e0cc003c5377648a247dd4.jpg" data-section="backstage" data-index="5">
+                    <img src="https://i.pinimg.com/736x/0d/17/7c/0d177cadf4e0cc003c5377648a247dd4.jpg" alt="Behind the Scenes - Image 6" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/92/74/91/927491fd225c8efa04166eead05cf3c5.jpg" data-section="backstage" data-index="6">
+                    <img src="https://i.pinimg.com/736x/92/74/91/927491fd225c8efa04166eead05cf3c5.jpg" alt="Behind the Scenes - Image 7" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/c0/71/be/c071be6160afeaa54f56fa441843c022.jpg" data-section="backstage" data-index="7">
+                    <img src="https://i.pinimg.com/736x/c0/71/be/c071be6160afeaa54f56fa441843c022.jpg" alt="Behind the Scenes - Image 8" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/c6/2a/dc/c62adc776682773afd244924fd689d77.jpg" data-section="backstage" data-index="8">
+                    <img src="https://i.pinimg.com/736x/c6/2a/dc/c62adc776682773afd244924fd689d77.jpg" alt="Behind the Scenes - Image 9" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/15/9d/ce/159dce9f3e045f220c340a61e5e9235c.jpg" data-section="backstage" data-index="9">
+                    <img src="https://i.pinimg.com/736x/15/9d/ce/159dce9f3e045f220c340a61e5e9235c.jpg" alt="Behind the Scenes - Image 10" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/97/b8/7f/97b87f5d19f02c0844347afa411e874b.jpg" data-section="backstage" data-index="10">
+                    <img src="https://i.pinimg.com/736x/97/b8/7f/97b87f5d19f02c0844347afa411e874b.jpg" alt="Behind the Scenes - Image 11" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/96/0c/22/960c2297fe394d6ef18b6b09fb3261ad.jpg" data-section="backstage" data-index="11">
+                    <img src="https://i.pinimg.com/736x/96/0c/22/960c2297fe394d6ef18b6b09fb3261ad.jpg" alt="Behind the Scenes - Image 12" loading="lazy">
+                </div>
+                <div class="gallery-item" data-src="https://i.pinimg.com/736x/58/e4/03/58e403645de030ba0f76d34950344cc2.jpg" data-section="backstage" data-index="12">
+                    <img src="https://i.pinimg.com/736x/58/e4/03/58e403645de030ba0f76d34950344cc2.jpg" alt="Behind the Scenes - Image 13" loading="lazy">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <button class="lightbox-prev">&#10094;</button>
+            <img id="lightbox-img" src="" alt="">
+            <button class="lightbox-next">&#10095;</button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>EV100 Vision Board — Celebrating 100 Years of Electro-Voice Innovation</p>
+    </footer>
+    
+    <script>
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentImageIndex = 0;
+        let currentSectionId = null;
+        let currentSection = [];
+        
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                const src = item.dataset.src;
+                const section = item.dataset.section;
+                currentSectionId = section;
+                currentImageIndex = parseInt(item.dataset.index);
+                loadCurrentImage();
+                lightbox.classList.add('active');
+            });
+        });
+        
+        function loadCurrentImage() {
+            const items = document.querySelectorAll(`.gallery-item[data-section="${currentSectionId}"]`);
+            currentSection = Array.from(items).map(item => item.dataset.src);
+            lightboxImg.src = currentSection[currentImageIndex];
+        }
+        
+        document.querySelector('.lightbox-close').addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+        
+        document.querySelector('.lightbox-prev').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + currentSection.length) % currentSection.length;
+            loadCurrentImage();
+        });
+        
+        document.querySelector('.lightbox-next').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % currentSection.length;
+            loadCurrentImage();
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+        
+        // Keyboard navigation in lightbox
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    document.querySelector('.lightbox-prev').click();
+                } else if (e.key === 'ArrowRight') {
+                    document.querySelector('.lightbox-next').click();
+                } else if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                }
+            }
+        });
+        
+        // Scroll-based navigation highlighting with IntersectionObserver
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '-100px 0px -66% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    const activeLink = document.querySelector(`nav a[data-section="${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Smooth scroll on nav click
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = document.getElementById(link.dataset.section);
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
